@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KERALAM CAFE · Digital Menu</title>
+    <!-- Google Font: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ---------- BODY ---------- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0B5D3B;
+            background-image: radial-gradient(circle at top, #2E8B57 0%, #0B5D3B 70%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ---------- MENU CARD ---------- */
+        .menu-card {
+            max-width: 740px;
+            width: 100%;
+            background: #FFF8E7;
+            border: 3px solid #D4AF37;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            padding: 30px 30px 22px;
+            transition: 0.2s;
+        }
+
+        /* ---------- HEADER / BRAND ---------- */
+        .brand {
+            background: #0B5D3B;
+            margin: -30px -30px 30px;
+            padding: 35px 30px;
+            border-bottom: 4px solid #D4AF37;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .brand-name i {
+            color: #D4AF37;
+            font-size: 2rem;
+            margin: 0 8px;
+        }
+
+        .brand-tagline {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0B5D3B;
+            letter-spacing: 3px;
+            margin-top: 6px;
+            font-style: italic;
+            background: #D4AF37;
+            display: inline-block;
+            padding: 4px 28px;
+            border-radius: 40px;
+            border: none;
+        }
+
+        .brand-tagline i {
+            color: #0B5D3B;
+            margin: 0 5px;
+        }
+
+        /* ---------- SECTION TITLES ---------- */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0B5D3B;
+            margin: 28px 0 14px 0;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #D4AF37;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .section-title i {
+            color: #D4AF37;
+            font-size: 1.3rem;
+            width: 32px;
+            text-align: center;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0B5D3B;
+            margin: 18px 0 10px 10px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px 4px 8px;
+            border-radius: 30px;
+        }
+
+        .section-sub i {
+            color: #D4AF37;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- MENU ITEMS ---------- */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-item {
+            background: white;
+            margin-bottom: 8px;
+            border-radius: 15px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            transition: all 0.15s;
+            border-left: 4px solid transparent;
+            font-size: 1rem;
+        }
+
+        .menu-item:hover {
+            background: #F5FFF8;
+            transform: translateX(5px);
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #2d1a0e;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .item-number {
+            font-weight: 400;
+            color: #a7846a;
+            font-size: 0.75rem;
+            margin-right: 2px;
+            min-width: 20px;
+        }
+
+        .item-detail {
+            font-weight: 400;
+            color: #5a4030;
+            font-size: 0.85rem;
+            background: #f0e5da;
+            padding: 0 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ---------- PRICE ---------- */
+        .item-price {
+            background: #0B5D3B;
+            color: white;
+            border: none;
+            font-weight: 700;
+            padding: 0 16px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            white-space: nowrap;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .item-price i {
+            font-size: 0.7rem;
+            color: #D4AF37;
+            margin-right: 2px;
+        }
+
+        /* ---------- SPECIAL ITEMS ---------- */
+        .menu-item.special {
+            background: #EAF8EF;
+            border-left: 5px solid #D4AF37;
+        }
+
+        .menu-item.special .item-name {
+            color: #0B5D3B;
+            font-weight: 600;
+        }
+
+        .menu-item.special .item-price {
+            background: #D4AF37;
+            color: #0B5D3B;
+        }
+
+        .menu-item.special .item-price i {
+            color: #0B5D3B;
+        }
+
+        /* ---------- CONTACT & FOOTER ---------- */
+        .contact-bar {
+            background: #0B5D3B;
+            margin: 30px -30px -22px;
+            padding: 20px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px 32px;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .contact-bar a {
+            background: #D4AF37;
+            color: #0B5D3B;
+            font-weight: bold;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            padding: 4px 18px 4px 14px;
+            border-radius: 40px;
+        }
+
+        .contact-bar a:hover {
+            transform: scale(1.04);
+            opacity: 0.9;
+        }
+
+        .contact-bar a i {
+            color: #0B5D3B;
+            font-size: 1.1rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #0B5D3B;
+            letter-spacing: 1px;
+        }
+
+        .footer-note i {
+            color: #D4AF37;
+            margin: 0 3px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 600px) {
+            .menu-card {
+                padding: 20px 16px 16px;
+                border-radius: 32px;
+            }
+
+            .brand {
+                margin: -20px -16px 20px;
+                padding: 25px 16px;
+            }
+
+            .brand-name {
+                font-size: 2.1rem;
+                letter-spacing: 2px;
+            }
+
+            .brand-name i {
+                font-size: 1.5rem;
+            }
+
+            .brand-tagline {
+                font-size: 0.85rem;
+                padding: 2px 16px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                margin-top: 22px;
+            }
+
+            .section-sub {
+                font-size: 1rem;
+                margin-left: 6px;
+            }
+
+            .menu-item {
+                padding: 10px 12px;
+                font-size: 0.92rem;
+                flex-wrap: wrap;
+                gap: 2px 0;
+            }
+
+            .item-price {
+                font-size: 0.85rem;
+                padding: 0 12px;
+                margin-left: auto;
+            }
+
+            .item-name {
+                flex: 1 1 60%;
+            }
+
+            .contact-bar {
+                margin: 20px -16px -16px;
+                padding: 16px;
+                font-size: 0.9rem;
+                gap: 12px 16px;
+            }
+
+            .contact-bar a {
+                padding: 4px 12px 4px 10px;
+                font-size: 0.85rem;
+            }
+
+            .item-detail {
+                font-size: 0.7rem;
+                padding: 0 6px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand-name {
+                font-size: 1.6rem;
+            }
+
+            .menu-item {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+
+            .item-price {
+                font-size: 0.8rem;
+                padding: 0 8px;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .section-sub {
+                font-size: 0.9rem;
+            }
+
+            .brand {
+                padding: 18px 12px;
+            }
+
+            .brand-tagline {
+                font-size: 0.75rem;
+                padding: 2px 12px;
+            }
+        }
+
+        /* ---------- PRINT ---------- */
+        @media print {
+            .menu-card {
+                box-shadow: none;
+                border: 3px solid #D4AF37;
+                border-radius: 12px;
+            }
+            .brand {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .contact-bar {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .contact-bar a {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .menu-item.special {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .menu-item:hover {
+                background: white;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-card">
+
+        <!-- ===== HEADER ===== -->
+        <header class="brand">
+            <div class="brand-name">
+                <i class="fas fa-utensils"></i>
+                KERALAM
+                <i class="fas fa-mug-hot"></i>
+                CAFE
+            </div>
+            <div class="brand-tagline">
+                <i class="fas fa-leaf"></i>
+                A Taste of South, Served with Love
+                <i class="fas fa-heart"></i>
+            </div>
+        </header>
+
+        <!-- ============================================================ -->
+        <!--  DOSA  (Regular)                                              -->
+        <!-- ============================================================ -->
+        <h2 class="section-title">
+            <i class="fas fa-circle"></i> DOSA
+        </h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">1.</span>Plain Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>40</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">2.</span>Butter Plain Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>60</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">3.</span>Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>60</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">4.</span>Butter Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>80</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">5.</span>Cheese Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>100</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">6.</span>Mysore Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>100</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">7.</span>Butter Mysore Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>110</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">8.</span>Cheese Mysore Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>130</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  FANCY DOSA                                                   -->
+        <!-- ============================================================ -->
+        <h3 class="section-sub">
+            <i class="fas fa-star"></i> FANCY DOSA
+        </h3>
+        <div class="menu-grid">
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">1.</span>Ghotala Mysore Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>140</span>
+            </div>
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">2.</span>Cheese Paneer Surma Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>140</span>
+            </div>
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">3.</span>Jini Roll Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>110</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  KERALAM SPECIAL DOSA                                         -->
+        <!-- ============================================================ -->
+        <h3 class="section-sub">
+            <i class="fas fa-crown"></i> KERALAM SPECIAL DOSA
+        </h3>
+        <div class="menu-grid">
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">1.</span>Ghee Podi Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>110</span>
+            </div>
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">2.</span>Benne Podi Masala Dosa</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>110</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  IDLI (formerly IDALI)                                        -->
+        <!-- ============================================================ -->
+        <h2 class="section-title">
+            <i class="fas fa-circle"></i> IDLI
+        </h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">1.</span>Idli (2 Piece)</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>30</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">2.</span>Medu Vada</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>40</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">3.</span>Idli Vada Combo</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>40</span>
+            </div>
+            <div class="menu-item special">
+                <span class="item-name"><span class="item-number">4.</span>Ghee Podi Thatte Idli</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>80</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  UTTAPAM                                                      -->
+        <!-- ============================================================ -->
+        <h2 class="section-title">
+            <i class="fas fa-circle"></i> UTTAPAM
+        </h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">1.</span>Onion Uttapam</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>70</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">2.</span>Onion Tomato Uttapam</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>70</span>
+            </div>
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">3.</span>Masala Uttapam</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>80</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  VEGETABLE APPE                                               -->
+        <!-- ============================================================ -->
+        <h2 class="section-title">
+            <i class="fas fa-circle"></i> VEGETABLE APPE
+        </h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <span class="item-name"><span class="item-number">1.</span>Vegetable Appe</span>
+                <span class="item-price"><i class="fas fa-rupee-sign"></i>50</span>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--  CONTACT / FOOTER                                             -->
+        <!-- ============================================================ -->
+        <div class="contact-bar">
+            <a href="tel:+919098657707">
+                <i class="fas fa-phone-alt"></i> +91 90986-57707
+            </a>
+            <a href="tel:+916264589731">
+                <i class="fas fa-phone-alt"></i> +91 62645-89731
+            </a>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-utensil-spoon"></i>
+            Pure Vegetarian · Fresh &amp; Authentic
+            <i class="fas fa-utensil-spoon"></i>
+        </div>
+
+    </div>
+
+</body>
+</html>
